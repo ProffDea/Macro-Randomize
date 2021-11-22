@@ -12,6 +12,6 @@ Libreoffice Calc Macro using the Basic programming language. Once the macro runs
 - Find the button called **Import Basic** along the top of the window and click it
 - Select the **macro_randomize.bas** file from wherever you saved it from downloading. You should see the code for the macro flood the script editor
 
-The set up is complete. You should be able to now go to Tools > Macros > Run Macro... to open the dialog box then go to wherever you created the new macro in which according to this guide would be in My Macros > Standard > Module1. Select **RandomizeContent** and click Run in order to use the macro.
+The set up is complete. In the Libreoffice Calc spreadsheet, you should be able to now go to Tools > Macros > Run Macro... to open the dialog box then go to wherever you created the new macro in which according to this guide would be in My Macros > Standard > Module1. Select **RandomizeContent** and click Run in order to use the macro.
 
 Make sure to edit the contents of the **races.txt** file to your liking for the macro to use. If you change the name of the file, make sure you change the name in **config.txt** as well.
