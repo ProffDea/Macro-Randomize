@@ -10,34 +10,23 @@ Sub RandomizeContent()
 	Input #numTag, fileToUse
 	Close #numTag
 
-	' Grabs file specified from config in directory of spreadsheet file
-	fileName = fileToUse
-	textFile = GetFilePath(fileName)
-
 	' Reads file specified by config
+	textFile = GetFilePath(fileToUse)
 	Open textFile for input as #numTag
 	totalLines = 0
 	Do While Not eof(numTag)
-		ReDim Preserve fileLines(totalLines)
-		Input #numTag, fileLines(totalLines)
+		ReDim Preserve elements(totalLines)
+		Input #numTag, elements(totalLines)
 		totalLines = totalLines + 1
 	Loop
 	Close #numTag
-
-	' Stores elements in array
-	totalElements = ArrayLen(fileLines) - 1
-	For iEle = 0 To totalElements Step 1
-		ReDim Preserve elements(iEle)
-		If Not IsEmpty(fileLines(iEle)) Then
-			elements(iEle) = fileLines(iEle)
-		End If
-	Next
 
 	' Assigns elements to cell contents
 	oService = createUnoService("com.sun.star.sheet.addin.Analysis")
 	currSheet = ThisComponent.CurrentController.ActiveSheet
 	activeRange = ThisComponent.CurrentSelection
 	rangeCoor = activeRange.RangeAddress
+	totalElements = ArrayLen(elements) - 1
 	For iCol = rangeCoor.StartColumn To rangeCoor.EndColumn
 		For iRow = rangeCoor.StartRow To rangeCoor.EndRow
 			Cel = currSheet.getCellByPosition(iCol, iRow)
