@@ -4,7 +4,8 @@ Sub RandomizeContent()
 	On Error GoTo Except
 
 	' Grabs config file in directory of spreadsheet file
-	configFile = GetFilePath("config.txt")
+	config = "config.txt"
+	configFile = GetFilePath(config)
 	numTag = FreeFile()
 	Open configFile for input as #numTag
 	Input #numTag, fileToUse
@@ -37,15 +38,15 @@ Sub RandomizeContent()
 
 	Except:
 	If Err = 57 Then
-		If Not IsEmpty(fileName) Then
-			msgbox "Missing file. Create a new '" & fileName & "'."
+		If Not IsEmpty(fileToUse) Then
+			msgbox "Missing file. Create a new '" & fileToUse & "'."
 		Else
-			msgbox "Missing file. Create a new 'config.txt'."
+			msgbox "Missing file. Create a new '" & config & "'."
 		End If
 	ElseIf Error = "Reading exceeds EOF." Then
-		msgbox "Invalid content in '" & fileName & "'. Please remove any empty lines then try again."
+		msgbox "Invalid content in '" & fileToUse & "'. Please remove any empty lines then try again."
 	ElseIf Err = 91 Then
-		msgbox "'" & fileName & "' is empty. Please add content then try again."
+		msgbox "'" & fileToUse & "' is empty. Please add content then try again."
 	ElseIf Err <> 0 Then
 		msgbox Error
 	End If
